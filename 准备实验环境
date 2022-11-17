@@ -18,4 +18,9 @@ service/frontend      LoadBalancer   10.xxxxx.146.yy    a062a547856a14dd48c79803
 service/prodcatalog   ClusterIP      10.xxxxx.103.yy   <none>                                                                   5000/TCP         51s   app=prodcatalog
 service/proddetail    ClusterIP      10.xxxxx.54.yy    <none>                                                                   3000/TCP         51s   app=proddetail
 
+得到负载均衡的地址，执行：
+export LB_NAME=$(kubectl get svc frontend -n workshop -o jsonpath="{.status.loadBalancer.ingress[*].hostname}") 
+echo $LB_NAME
 
+在浏览器里输入上面命令返回的负载均衡器地址，应用就可以访问啦！
+image.png
